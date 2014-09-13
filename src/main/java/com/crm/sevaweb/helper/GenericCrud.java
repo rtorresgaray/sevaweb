@@ -21,6 +21,6 @@ public interface GenericCrud<T> {
 
     void update(T t);
 
-    void delete(Long id);
+    void delete(T t);
     
 }

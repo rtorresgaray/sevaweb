@@ -43,7 +43,7 @@ public class VendedorDAOH extends BaseHibernateDAO implements VendedorDAO{
 
     @Override
     public void delete(Vendedor t) {
-       
+       this.getSession().delete(t);
     }
     
 }

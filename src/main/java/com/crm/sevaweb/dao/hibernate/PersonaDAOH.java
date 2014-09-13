@@ -8,6 +8,6 @@ package com.crm.sevaweb.dao.hibernate;
  *
  * @author rtorres
  */
-public interface PersonaDAOH {
+public class PersonaDAOH {
     
 }

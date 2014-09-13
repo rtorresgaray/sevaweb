@@ -6,6 +6,7 @@ package com.crm.sevaweb.dao.hibernate;
 
 import com.crm.sevaweb.dao.PersonaDAO;
 import com.crm.sevaweb.model.Persona;
+
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -18,32 +19,29 @@ public class PersonaDAOH extends BaseHibernateDAO implements PersonaDAO {
 
     @Override
     public List<Persona> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = this.getSession().createCriteria(Persona.class);
+        return criteria.list();
     }
 
     @Override
     public Persona find(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = this.getSession().createCriteria(Persona.class);
+        criteria.add(Restrictions.eq("id", id));
+        return (Persona) criteria.uniqueResult();
     }
 
     @Override
     public void save(Persona t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.getSession().save(t);
     }
 
     @Override
     public void update(Persona t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.getSession().merge(t);
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Persona t) {
+        this.getSession().delete(t);
     }
-
-    
-    
-    
-      
-    
 }

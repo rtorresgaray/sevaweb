@@ -9,6 +9,8 @@ package com.crm.sevaweb.dao.hibernate;
 import com.crm.sevaweb.dao.VendedorDAO;
 import com.crm.sevaweb.model.Vendedor;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -18,27 +20,30 @@ public class VendedorDAOH extends BaseHibernateDAO implements VendedorDAO{
 
     @Override
     public List<Vendedor> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = this.getSession().createCriteria(Vendedor.class);
+        return criteria.list();
     }
 
     @Override
     public Vendedor find(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Criteria criteria = this.getSession().createCriteria(Vendedor.class);
+        criteria.add(Restrictions.eq("id",id));
+        return (Vendedor)criteria.uniqueResult();
     }
 
     @Override
     public void save(Vendedor t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.getSession().save(t);
     }
 
     @Override
     public void update(Vendedor t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.getSession().merge(t);
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Vendedor t) {
+       
     }
     
 }
